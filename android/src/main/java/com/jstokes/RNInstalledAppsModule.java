@@ -8,6 +8,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
+import android.content.pm.PackageManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,13 +32,13 @@ public class RNInstalledAppsModule extends ReactContextBaseJavaModule {
     }
 
     private List<String> getApps() {
-        List<PackageInfo> packages = this.reactContext
+        List<ApplicationInfo> packages = this.reactContext
             .getPackageManager()
-            .getInstalledPackages(0);
+            .getInstalledApplications(PackageManager.MATCH_UNINSTALLED_PACKAGES);
 
         List<String> ret = new ArrayList<>();
-        for (final PackageInfo p: packages) {
-            ret.add(p.packageName);
+        for (ApplicationInfo applicationInfo : packages) {
+            ret.add(applicationInfo.packageName);
         }
         return ret;
     }
@@ -54,8 +55,8 @@ public class RNInstalledAppsModule extends ReactContextBaseJavaModule {
             }
         }
         return ret;
-    } 
-    
+    }
+
     @Override
     public @Nullable Map<String, Object> getConstants() {
         Map<String, Object> constants = new HashMap<>();
