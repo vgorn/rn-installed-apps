@@ -5,7 +5,7 @@
     "main": "index.js",
     "repository": {
         "type": "git",
-        "url": "https://github.com/jstokes/rn-installed-apps"
+        "url": "https://github.com/vgorn/rn-installed-apps"
     },
     "keywords": [
         "react-native",
